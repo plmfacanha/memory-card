@@ -10,12 +10,12 @@ function App() {
     <>
       <h1>Down below goes the grid of cards:</h1>
       <div className="grid">
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
-        <Card />
+        <Card index={1} />
+        <Card index={2} />
+        <Card index={3} />
+        <Card index={4} />
+        <Card index={5} />
+        <Card index={6} />
       </div>
     </>
   );
