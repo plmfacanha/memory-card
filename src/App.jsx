@@ -6,16 +6,15 @@ import "./App.css";
 // 1. Create a .css and display the div="grid" in a grid
 
 function App() {
+  const cards = [1, 3, 4, 5, 6];
+
   return (
     <>
       <h1>Down below goes the grid of cards:</h1>
       <div className="grid">
-        <Card index={1} />
-        <Card index={2} />
-        <Card index={3} />
-        <Card index={4} />
-        <Card index={5} />
-        <Card index={6} />
+        {cards.map((num, i) => (
+          <Card key={i} index={num} />
+        ))}
       </div>
     </>
   );
