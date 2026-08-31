@@ -1,4 +1,5 @@
 import { useState } from "react";
+import Card from "./components/Card";
 
 import "./App.css";
 
@@ -7,6 +8,7 @@ function App() {
 
   return (
     <>
+      <Card />
       <p>{count}</p>
       <button onClick={() => setCount(count + 1)}>Click me!</button>
     </>
