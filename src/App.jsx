@@ -6,7 +6,7 @@ import "./App.css";
 // 1. Create a .css and display the div="grid" in a grid
 
 function App() {
-  const cards = [1, 3, 4, 5, 6];
+  const cards = [1, 2, 3, 4, 5, 6];
 
   return (
     <>
