@@ -1,7 +1,13 @@
+// TODO: import an image from an external API
+// 1. Display the card inside the component/function Card.jsx
+
 export default function Card() {
   return (
     <>
-      <h1>This is just the Card.jsx !</h1>
+      <p>
+        {" "}
+        {"<"} Card.jsx {"/>"}{" "}
+      </p>
     </>
   );
 }
