@@ -5,8 +5,7 @@ export default function Card() {
   return (
     <>
       <p>
-        {" "}
-        {"<"} Card.jsx {"/>"}{" "}
+        {"<"} Card.jsx {"/>"}
       </p>
     </>
   );
