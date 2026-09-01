@@ -1,39 +1,19 @@
-import { useState, useEffect } from "react";
+// import { useState } from "react";
 import Card from "./components/Card";
 import "./App.css";
 
+// TODO: display the <Card /> components in a grid
+// 1. Create a .css and display the div="grid" in a grid
+
 function App() {
-  const [pokemons, setPokemons] = useState([]);
-
-  async function fetchData() {
-    const res = await fetch("https://pokeapi.co/api/v2/pokemon?limit=6");
-    const data = await res.json();
-    return data.results.map((pokemon) => {
-      const id = pokemon.url.split("/").filter(Boolean).pop();
-      return `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/official-artwork/${id}.png`;
-    });
-  }
-
-  useEffect(() => {
-    let ignore = false;
-
-    fetchData().then((images) => {
-      if (!ignore) {
-        setPokemons(images);
-      }
-    });
-
-    return () => {
-      ignore = true;
-    };
-  }, []);
+  const cards = [1, 2, 3, 4, 5, 6];
 
   return (
     <>
       <h1>Down below goes the grid of cards:</h1>
       <div className="grid">
-        {pokemons.map((image, i) => (
-          <Card key={i} image={image} />
+        {cards.map((num, i) => (
+          <Card key={i} index={num} />
         ))}
       </div>
     </>
