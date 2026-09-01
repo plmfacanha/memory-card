@@ -1,7 +1,7 @@
-export default function Card({ img }) {
+export default function Card() {
   return (
     <>
-      <img src={img} />
+      <h2>Card.jsx</h2>
     </>
   );
 }
