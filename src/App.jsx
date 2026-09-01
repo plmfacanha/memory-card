@@ -3,12 +3,13 @@ import Card from "./components/Card";
 import "./App.css";
 
 // TODO: display the <Card /> components in a grid
-// //1. Create a .css and display the div="grid" in a grid 6x6
-// //2. Fetch a image from Pokemon API
-// //2.1 Store it as a src value in the Card.jsx component;
-// 3. Fetch an url that gives 6 pokemons information
-// 4. For each Card.jsx, update it accordingly
+//// 1. Create a .css and display the div="grid" in a grid 6x6
+//// 2. Fetch a image from Pokemon API
+//// 2.1 Store it as a src value in the Card.jsx component;
+//// 3. Fetch an url that gives 6 pokemons information
+//// 4. For each Card.jsx, update it accordingly
 // 5. Create a click event for each Card.jsx and shuffle it around when the event is triggered
+// 5.1 Ensure theres a state with score that updates everytime user clicks in a Card.jsx that hasn't been clicked yet
 
 function App() {
   const url = "https://pokeapi.co/api/v2/pokemon?limit=6&offset=0";
@@ -21,14 +22,27 @@ function App() {
         const res = await fetch(url);
         if (!res.ok) throw new Error(`Response status: ${res.status}`);
         const data = await res.json();
-        setPokemons(data.results);
+
+        const details = await Promise.all(
+          data.results.map(async (item) => {
+            const r = await fetch(item.url);
+            return r.json();
+          }),
+        );
+
+        setPokemons(
+          details.map((p) => ({
+            name: p.name,
+            image: p.sprites.front_default,
+          })),
+        );
       } catch (error) {
         console.error(error);
       }
     }
 
     getData();
-  }, [pokemons]);
+  }, []);
 
   return (
     <>
@@ -38,7 +52,7 @@ function App() {
       </h2>
       <div className="grid">
         {pokemons.map((item, index) => (
-          <Card key={index} pokemonName={item.name} pokemonImage={item.url} />
+          <Card key={index} pokemonName={item.name} pokemonImage={item.image} />
         ))}
       </div>
     </>
