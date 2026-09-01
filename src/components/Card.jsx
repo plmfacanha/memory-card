@@ -1,7 +1,7 @@
-export default function Card({ image, handleClick }) {
+export default function Card({ img }) {
   return (
     <>
-      <img src={image} alt="pokemon" onClick={handleClick} />
+      <img src={img} />
     </>
   );
 }
