@@ -1,9 +1,10 @@
 import "./Card.css";
 
-export default function Card({ image }) {
+export default function Card({ pokemonName, pokemonImage }) {
   return (
     <div className="card">
-      <img src={image} alt="Default image for the current pokemon" />
+      <p>{pokemonName}</p>
+      <img src={pokemonImage} alt="Default image for the current pokemon" />
     </div>
   );
 }
