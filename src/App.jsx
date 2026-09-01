@@ -6,15 +6,15 @@ import "./App.css";
 // 1. Create a .css and display the div="grid" in a grid
 
 function App() {
-  const cards = [1, 2, 3, 4, 5, 6];
+  function handleClick() {
+    console.log("This card was clicked!");
+  }
 
   return (
     <>
       <h1>Down below goes the grid of cards:</h1>
       <div className="grid">
-        {cards.map((num, i) => (
-          <Card key={i} index={num} />
-        ))}
+        <Card handleClick={handleClick} />
       </div>
     </>
   );
