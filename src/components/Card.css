@@ -1,0 +1,14 @@
+.card {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: radial-gradient(circle, #fff59d 0%, #ffe082 100%);
+  border-radius: 16px;
+  padding: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+img {
+  height: 200px;
+  width: 200px;
+}

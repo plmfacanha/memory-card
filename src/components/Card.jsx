@@ -1,7 +1,9 @@
-export default function Card() {
+import "./Card.css";
+
+export default function Card({ image }) {
   return (
-    <>
-      <h2>Card.jsx</h2>
-    </>
+    <div className="card">
+      <img src={image} alt="Default image for the current pokemon" />
+    </div>
   );
 }

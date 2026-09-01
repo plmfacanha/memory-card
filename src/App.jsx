@@ -12,29 +12,32 @@ import "./App.css";
 
 function App() {
   const [url, setUrl] = useState("https://pokeapi.co/api/v2/pokemon/pikachu");
+  const [pokemon, setPokemon] = useState({
+    name: "",
+    image: null,
+  });
 
   useEffect(() => {
-    async function fetchData() {
-      const res = await fetch(url);
-      if (res.ok) {
-        const data = await res.json();
-
-        return {
-          pokemonName: data.name,
-          image: data.sprites.back_shiny,
-        };
+    async function getData() {
+      try {
+        const response = await fetch(url);
+        if (!response.ok)
+          throw new Error(`Response status: ${response.status}`);
+        const result = await response.json();
+        setPokemon({ name: result.name, image: result.sprites.front_default });
+      } catch (error) {
+        console.error(error);
       }
     }
 
-    const pokemonInfo = fetchData();
-    console.log(pokemonInfo);
-  });
+    getData();
+  }, [url]);
 
   return (
     <>
-      <h1>Your pokemon is: </h1>
+      <h1>Your pokemon is: {pokemon.name}</h1>
       <div className="grid">
-        <Card />
+        <Card image={pokemon.image} />
       </div>
     </>
   );
