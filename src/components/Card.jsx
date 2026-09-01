@@ -1,12 +1,7 @@
-// TODO: import an image from an external API
-// 1. Display the card inside the component/function Card.jsx
-
-export default function Card({ index }) {
+export default function Card({ image }) {
   return (
     <>
-      <p>
-        {"<"} Card.jsx {"/>"} {index}
-      </p>
+      <img src={image} alt="pokemon" />
     </>
   );
 }
