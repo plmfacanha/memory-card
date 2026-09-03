@@ -23,18 +23,16 @@ function App() {
         if (!res.ok) throw new Error(`Response status: ${res.status}`);
         const data = await res.json();
 
-        const details = await Promise.all(
+        const info = await Promise.all(
           data.results.map(async (item) => {
-            const r = await fetch(item.url);
-            return r.json();
+            const response = await fetch(item.url);
+            const result = response.json();
+            return result;
           }),
         );
 
         setPokemons(
-          details.map((p) => ({
-            name: p.name,
-            image: p.sprites.front_default,
-          })),
+          info.map((p) => [...pokemons, { name: p.name, image: p.image }]),
         );
       } catch (error) {
         console.error(error);
@@ -42,7 +40,7 @@ function App() {
     }
 
     getData();
-  }, []);
+  }, [pokemons]);
 
   return (
     <>
