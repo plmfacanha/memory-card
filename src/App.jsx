@@ -8,8 +8,9 @@ import "./App.css";
 //// 2.1 Store it as a src value in the Card.jsx component;
 //// 3. Fetch an url that gives 6 pokemons information
 //// 4. For each Card.jsx, update it accordingly
-// 5. Create a click event for each Card.jsx and shuffle it around when the event is triggered
+// 5. Create a click event for each Card.jsx
 // 5.1 Ensure theres a state with score that updates everytime user clicks in a Card.jsx that hasn't been clicked yet
+// 5.2 shuffle it around when the event is triggered
 
 function App() {
   const url = "https://pokeapi.co/api/v2/pokemon?limit=6&offset=0";
@@ -32,7 +33,10 @@ function App() {
         );
 
         setPokemons(
-          info.map((p) => [...pokemons, { name: p.name, image: p.image }]),
+          info.map((p) => ({
+            name: p.name,
+            image: p.sprites.front_default,
+          })),
         );
       } catch (error) {
         console.error(error);
