@@ -13,8 +13,9 @@ import "./App.css";
 // 5.2 shuffle it around when the event is triggered
 
 function App() {
-  const url = "https://pokeapi.co/api/v2/pokemon?limit=6&offset=0";
-
+  const [url, setUrl] = useState(
+    "https://pokeapi.co/api/v2/pokemon?limit=6&offset=0",
+  );
   const [pokemons, setPokemons] = useState([]);
 
   useEffect(() => {
@@ -44,7 +45,7 @@ function App() {
     }
 
     getData();
-  }, [pokemons]);
+  }, [url]);
 
   return (
     <>
