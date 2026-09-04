@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useId } from "react";
 import Card from "./components/Card";
 import "./App.css";
 
@@ -18,6 +18,8 @@ function App() {
   );
   const [pokemons, setPokemons] = useState([]);
   const [score, setScore] = useState(0);
+  const [isClicked, setClicked] = useState(false);
+  const componentId = useId();
 
   useEffect(() => {
     async function getData() {
@@ -38,6 +40,7 @@ function App() {
           info.map((p) => ({
             name: p.name,
             image: p.sprites.front_default,
+            isClicked: false,
           })),
         );
       } catch (error) {
@@ -49,8 +52,7 @@ function App() {
   }, [url]);
 
   function handleClick() {
-    setScore(score + 1);
-    console.log(score);
+    // TODO: is pokemon was already clicked, reset score, increase++ otherwise.
   }
 
   return (
@@ -63,6 +65,7 @@ function App() {
         {pokemons.map((item, index) => (
           <Card
             key={index}
+            id={item.name}
             pokemonName={item.name}
             pokemonImage={item.image}
             handleClick={handleClick}
