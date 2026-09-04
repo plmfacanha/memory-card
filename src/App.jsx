@@ -48,6 +48,11 @@ function App() {
     getData();
   }, [url]);
 
+  function handleClick() {
+    setScore(score + 1);
+    console.log(score);
+  }
+
   return (
     <>
       <h1>Memory Card Game</h1>
@@ -56,7 +61,12 @@ function App() {
       </h2>
       <div className="grid">
         {pokemons.map((item, index) => (
-          <Card key={index} pokemonName={item.name} pokemonImage={item.image} />
+          <Card
+            key={index}
+            pokemonName={item.name}
+            pokemonImage={item.image}
+            handleClick={handleClick}
+          />
         ))}
       </div>
     </>
