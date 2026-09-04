@@ -17,6 +17,7 @@ function App() {
     "https://pokeapi.co/api/v2/pokemon?limit=6&offset=0",
   );
   const [pokemons, setPokemons] = useState([]);
+  const [score, setScore] = useState(0);
 
   useEffect(() => {
     async function getData() {
