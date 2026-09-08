@@ -60,6 +60,14 @@ function App() {
     );
   }
 
+  function handleScore(pokemonName) {
+    setScore((prevPokemons) =>
+      prevPokemons.map((p) =>
+        p.name === pokemonName && !p.isClicked ? score + 1 : 0,
+      ),
+    );
+  }
+
   return (
     <>
       <h1>Memory Card Game</h1>
@@ -72,7 +80,10 @@ function App() {
             key={index}
             pokemonName={item.name}
             pokemonImage={item.image}
-            onClick={() => handleClick(item.name)}
+            onClick={() => {
+              handleClick(item.name);
+              handleScore(item.name);
+            }}
           />
         ))}
       </div>
