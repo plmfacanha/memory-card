@@ -2,20 +2,17 @@ import { useState, useEffect, useId } from "react";
 import Card from "./components/Card";
 import "./App.css";
 
-// TODO: display the <Card /> components in a grid
-//// 1. Create a .css and display the div="grid" in a grid 6x6
-//// 2. Fetch a image from Pokemon API
-//// 2.1 Store it as a src value in the Card.jsx component;
-//// 3. Fetch an url that gives 6 pokemons information
-//// 4. For each Card.jsx, update it accordingly
-//// 5. Create a click event for each Card.jsx
-//// 5.1 Ensure theres a state with score that updates everytime user clicks in a Card.jsx that hasn't been clicked yet
-// 5.2 shuffle it around when the event is triggered
+const shuffleArray = (array) => {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+};
 
 function App() {
-  const [url, setUrl] = useState(
-    "https://pokeapi.co/api/v2/pokemon?limit=6&offset=0",
-  );
+  const url = "https://pokeapi.co/api/v2/pokemon?limit=6&offset=0";
   const [pokemons, setPokemons] = useState([]);
   const [score, setScore] = useState(0);
 
@@ -47,7 +44,7 @@ function App() {
     }
 
     getData();
-  }, [url]);
+  }, []);
 
   function handleClick(pokemonName) {
     setPokemons((prevPokemons) =>
@@ -60,20 +57,16 @@ function App() {
   function handleScore(pokemonName) {
     const curr = pokemons.find((p) => p.name === pokemonName);
 
-    !curr.isClicked ? setScore(score + 1) : setScore(0);
+    !curr.isClicked ? setScore(score + 1) : resetGame();
   }
-
-  const shuffleArray = (array) => {
-    const newArray = [...array];
-    for (let i = newArray.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
-    }
-    return newArray;
-  };
 
   function handleShuffle() {
     setPokemons((prev) => shuffleArray(prev));
+  }
+
+  function resetGame() {
+    setScore(0);
+    setPokemons((prev) => prev.map((p) => ({ ...p, isClicked: false })));
   }
 
   return (
