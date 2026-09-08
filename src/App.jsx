@@ -19,7 +19,6 @@ function App() {
   const [pokemons, setPokemons] = useState([]);
   const [score, setScore] = useState(0);
   const [isClicked, setClicked] = useState(false);
-  const componentId = useId();
 
   useEffect(() => {
     async function getData() {
@@ -51,8 +50,9 @@ function App() {
     getData();
   }, [url]);
 
-  function handleClick() {
+  function handleClick(pokemonName) {
     // TODO: is pokemon was already clicked, reset score, increase++ otherwise.
+    console.log(`${pokemonName} was clicked!`);
   }
 
   return (
@@ -68,7 +68,7 @@ function App() {
             id={item.name}
             pokemonName={item.name}
             pokemonImage={item.image}
-            handleClick={handleClick}
+            handleClick={() => handleClick(item.name)}
           />
         ))}
       </div>
