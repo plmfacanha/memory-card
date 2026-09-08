@@ -8,8 +8,8 @@ import "./App.css";
 //// 2.1 Store it as a src value in the Card.jsx component;
 //// 3. Fetch an url that gives 6 pokemons information
 //// 4. For each Card.jsx, update it accordingly
-// 5. Create a click event for each Card.jsx
-// 5.1 Ensure theres a state with score that updates everytime user clicks in a Card.jsx that hasn't been clicked yet
+//// 5. Create a click event for each Card.jsx
+//// 5.1 Ensure theres a state with score that updates everytime user clicks in a Card.jsx that hasn't been clicked yet
 // 5.2 shuffle it around when the event is triggered
 
 function App() {
@@ -63,6 +63,19 @@ function App() {
     !curr.isClicked ? setScore(score + 1) : setScore(0);
   }
 
+  const shuffleArray = (array) => {
+    const newArray = [...array];
+    for (let i = newArray.length - 1; i > 0; i--) {
+      const j = Math.floor(Math.random() * (i + 1));
+      [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+    }
+    return newArray;
+  };
+
+  function handleShuffle() {
+    setPokemons((prev) => shuffleArray(prev));
+  }
+
   return (
     <>
       <h1>Memory Card Game</h1>
@@ -78,6 +91,7 @@ function App() {
             onClick={() => {
               handleClick(item.name);
               handleScore(item.name);
+              handleShuffle();
             }}
           />
         ))}
