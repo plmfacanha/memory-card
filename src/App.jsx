@@ -68,7 +68,7 @@ function App() {
             id={item.name}
             pokemonName={item.name}
             pokemonImage={item.image}
-            handleClick={() => handleClick(item.name)}
+            onClick={() => handleClick(item.name)}
           />
         ))}
       </div>
