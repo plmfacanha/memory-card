@@ -53,6 +53,14 @@ function App() {
   function handleClick(pokemonName) {
     // TODO: is pokemon was already clicked, reset score, increase++ otherwise.
     console.log(`${pokemonName} was clicked!`);
+
+    setPokemons((prevPokemons) =>
+      prevPokemons.map((p) =>
+        p.name === pokemonName ? { ...p, isClicked: true } : p,
+      ),
+    );
+
+    console.log(pokemons);
   }
 
   return (
@@ -65,7 +73,6 @@ function App() {
         {pokemons.map((item, index) => (
           <Card
             key={index}
-            id={item.name}
             pokemonName={item.name}
             pokemonImage={item.image}
             onClick={() => handleClick(item.name)}
