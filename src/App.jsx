@@ -50,9 +50,6 @@ function App() {
   }, [url]);
 
   function handleClick(pokemonName) {
-    // TODO: is pokemon was already clicked, reset score, increase++ otherwise.
-    console.log(`${pokemonName} was clicked!`);
-
     setPokemons((prevPokemons) =>
       prevPokemons.map((p) =>
         p.name === pokemonName ? { ...p, isClicked: !p.isClicked } : p,
@@ -61,11 +58,9 @@ function App() {
   }
 
   function handleScore(pokemonName) {
-    setScore((prevPokemons) =>
-      prevPokemons.map((p) =>
-        p.name === pokemonName && !p.isClicked ? score + 1 : 0,
-      ),
-    );
+    const curr = pokemons.find((p) => p.name === pokemonName);
+
+    !curr.isClicked ? setScore(score + 1) : setScore(0);
   }
 
   return (
