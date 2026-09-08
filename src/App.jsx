@@ -18,7 +18,6 @@ function App() {
   );
   const [pokemons, setPokemons] = useState([]);
   const [score, setScore] = useState(0);
-  const [isClicked, setClicked] = useState(false);
 
   useEffect(() => {
     async function getData() {
@@ -56,11 +55,9 @@ function App() {
 
     setPokemons((prevPokemons) =>
       prevPokemons.map((p) =>
-        p.name === pokemonName ? { ...p, isClicked: true } : p,
+        p.name === pokemonName ? { ...p, isClicked: !p.isClicked } : p,
       ),
     );
-
-    console.log(pokemons);
   }
 
   return (
