@@ -57,16 +57,11 @@ function App() {
   function handleScore(pokemonName) {
     const curr = pokemons.find((p) => p.name === pokemonName);
 
-    !curr.isClicked ? setScore(score + 1) : resetGame();
+    !curr.isClicked ? setScore(score + 1) : setScore(0);
   }
 
   function handleShuffle() {
     setPokemons((prev) => shuffleArray(prev));
-  }
-
-  function resetGame() {
-    // TODO: create a resetGame() function that cleans up interface and reset it
-    setScore(0);
   }
 
   return (
