@@ -15,6 +15,7 @@ function App() {
   const url = "https://pokeapi.co/api/v2/pokemon?limit=6&offset=0";
   const [pokemons, setPokemons] = useState([]);
   const [score, setScore] = useState(0);
+  const [bestScore, setBestScore] = useState(0);
 
   useEffect(() => {
     async function getData() {
@@ -57,7 +58,12 @@ function App() {
   function handleScore(pokemonName) {
     const curr = pokemons.find((p) => p.name === pokemonName);
 
-    !curr.isClicked ? setScore(score + 1) : setScore(0);
+    if (!curr.isClicked) {
+      setScore(score + 1);
+    } else {
+      setScore(0);
+      setBestScore(score);
+    }
   }
 
   function handleShuffle() {
@@ -70,6 +76,8 @@ function App() {
       <h2>
         Click in one of the pokemons and make sure you don't click them twice!
       </h2>
+      <p>Current Score: {score}</p>
+      <p>Best Score: {bestScore}</p>
       <div className="grid">
         {pokemons.map((item, index) => (
           <Card
