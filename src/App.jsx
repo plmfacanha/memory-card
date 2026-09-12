@@ -59,10 +59,15 @@ function App() {
     const curr = pokemons.find((p) => p.name === pokemonName);
 
     if (!curr.isClicked) {
-      setScore(score + 1);
+      const newScore = score + 1;
+      setScore(newScore);
+      if (newScore === 6) {
+        alert(`CONGRATULATIONS ${prompt("Enter your name: ")}!`);
+      }
     } else {
+      setBestScore((prevBest) => Math.max(prevBest, score));
       setScore(0);
-      setBestScore(score);
+      setPokemons((prev) => prev.map((p) => ({ ...p, isClicked: false })));
     }
   }
 
