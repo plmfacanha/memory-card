@@ -1,4 +1,4 @@
-import { useState, useEffect, useId } from "react";
+import { useState, useEffect } from "react";
 import Card from "./components/Card";
 import "./App.css";
 
@@ -65,8 +65,8 @@ function App() {
   }
 
   function resetGame() {
+    // TODO: create a resetGame() function that cleans up interface and reset it
     setScore(0);
-    setPokemons((prev) => prev.map((p) => ({ ...p, isClicked: false })));
   }
 
   return (
